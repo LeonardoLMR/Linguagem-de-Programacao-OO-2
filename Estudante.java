@@ -9,7 +9,6 @@ public class Estudante extends Pessoa {
     public ArrayList<String> getMatriculas() {
         return matriculas;
     }
-
     public void setMatriculas(ArrayList<String> matriculas) {
         this.matriculas = matriculas;
     }
@@ -17,12 +16,11 @@ public class Estudante extends Pessoa {
     public ArrayList<String> getCursos() {
         return cursos;
     }
-
     public void setCursos(ArrayList<String> cursos) {
         this.cursos = cursos;
     }
 
-    public Estudante(String nomes, String cpfs, String enderecos, String telefones) {
+    public Estudante(String nomes, String cpfs, String enderecos, String telefones){
         super(nomes, cpfs, enderecos, telefones);
     }
     

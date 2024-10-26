@@ -6,7 +6,22 @@ public class Turma {
     ArrayList<String> idTurmas = new ArrayList();
     ArrayList<String> cursos = new ArrayList();
     ArrayList<Integer> semestres = new ArrayList();
+    public String professorList;
+    ArrayList<String> estudantesList =  new ArrayList();
 
+    public String getProfessorList() {
+        return professorList;
+    }
+    public void setProfessorList(String professorList) {
+        this.professorList = professorList;
+    }
+
+    public ArrayList<String> getEstudantesList() {
+        return estudantesList;
+    }
+    public void setEstudantesList(ArrayList<String> estudantesList) {
+        this.estudantesList = estudantesList;
+    }
     
     public ArrayList<String> getIdTurmas() {
         return idTurmas;
@@ -33,10 +48,12 @@ public class Turma {
     }
 
     
-    public void Turma(String idTurma, String curso, int semestre) {
+    public void Turma(String idTurma, String curso, int semestre, String professorList, String estudantesList) {
         this.idTurmas.add(idTurma);
         this.cursos.add(curso);
         this.semestres.add(semestre);
+        this.professorList = professorList;
+        this.estudantesList.add(estudantesList);
     }
 
 }
