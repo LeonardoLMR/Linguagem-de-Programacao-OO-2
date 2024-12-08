@@ -1,45 +1,39 @@
-package Atividade1;
+package atividadediagnostica;
 
-import java.util.ArrayList;
-
-public class Pessoa {
-    ArrayList<String> nomes =  new ArrayList();
-    ArrayList<String> cpfs =  new ArrayList();
-    ArrayList<String> enderecos =  new ArrayList();
-    ArrayList<String> telefones =  new ArrayList();
-
-    public ArrayList<String> getNomes() {
-        return nomes;
+public abstract class Pessoa implements Printable{
+    //Atributo
+    public String nome;
+    public String cpf;
+    public String endereco;
+    public String telefone;
+    
+    //Getter e Setter
+    public String getNome() {
+        return nome;
     }
-    public void setNomes(ArrayList<String> nomes) {
-        this.nomes = nomes;
-    }
-
-    public ArrayList<String> getCpfs() {
-        return cpfs;
-    }
-    public void setCpfs(ArrayList<String> cpfs) {
-        this.cpfs = cpfs;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public ArrayList<String> getEnderecos() {
-        return enderecos;
+    public String getCpf() {
+        return cpf;
     }
-    public void setEnderecos(ArrayList<String> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    public ArrayList<String> getTelefones() {
-        return telefones;
-    }
-    public void setTelefones(ArrayList<String> telefones) {
-        this.telefones = telefones;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public Pessoa(String nomes, String cpfs, String enderecos, String telefones){
-        this.nomes.add(nomes);
-        this.cpfs.add(cpfs);
-        this.enderecos.add(enderecos);
-        this.telefones.add(telefones);
+    public String getEndereco() {
+        return endereco;
     }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
 }

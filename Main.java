@@ -1,112 +1,200 @@
-package Atividade1;
+package atividadediagnostica;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    public int Estudantes;
-    public int Professores;
-    public int Turmas;
-    public int Cursos;
-
-    public void Main(){
-    }
+public class Main { 
+    //Professor e Estudante
+    public ArrayList<Integer> profissao = new ArrayList(); //0 = Estudante, 1 = Professor
+    public ArrayList<String> nome = new ArrayList();
+    public ArrayList<String> cpf = new ArrayList();
+    public ArrayList<String> endereco = new ArrayList();
+    public ArrayList<String> telefone = new ArrayList();
+    //Professor
+    public ArrayList<Integer> SIAPE = new ArrayList();
+    //Estudante
+    public ArrayList<String> matricula = new ArrayList();
+    //Curso
+    public ArrayList<String> nome_Curso = new ArrayList();
+    public ArrayList<String> qtd_semestres = new ArrayList();
+    //Turma
+    public ArrayList<String> id_turma = new ArrayList();
+    public ArrayList<Integer> semestre = new ArrayList();
+    public ArrayList<String> professor = new ArrayList();
     
-    public int getCursos() {
-        return Cursos;
+    //Método CadastrarProfessor
+    public void cadastrarProfessor() throws IOException{
+        boolean existe = false;
+        Scanner entrada =  new Scanner(System.in);
+        
+        System.out.println("Quantos professores deseja cadastrar? ");
+        int qdt = entrada.nextInt();
+        
+        
+        for(int i=0; i<qdt; i++){
+            entrada.nextLine();
+            System.out.println("DADOS PROFESSOR " + (i+1));
+            System.out.println("Nome: "); 
+            String nome_a = entrada.nextLine(); nome.add(nome_a);
+            while(existe == false){
+                System.out.println("CPF: ");
+                String cpf_a = entrada.nextLine(); 
+                if(cpf.contains(cpf_a)){
+                    System.out.println("Esse CPF já existe dentro do sistema... Digite novamente...");
+                }else{
+                    cpf.add(cpf_a);
+                    existe = true;
+                }
+            }
+            System.out.println("Endereco: ");
+            String end = entrada.nextLine(); endereco.add(end);
+            System.out.println("Telefone: ");
+            String tel = entrada.nextLine(); telefone.add(tel);
+            System.out.println("SIAPE: ");
+            int Sia = entrada.nextInt(); SIAPE.add(Sia);
+            entrada.nextLine();
+            matricula.add("0");
+            profissao.add(1);
+            existe = false;
+        }
+        System.out.println("Cadastro realizado com sucesso!");
+        System.out.println("Pressione Qualquer Tecla para continuar...");
+        System.in.read();
     }
-    public void setCursos(int Cursos) {
-        this.Cursos = Cursos;
+    //Método CadastrarEstudante
+    public void cadastrarEstudante() throws IOException{
+        boolean existe = false;
+        Scanner entrada =  new Scanner(System.in);
+        
+        System.out.println("Quantos estudantes deseja cadastrar? ");
+        int qdt = entrada.nextInt();
+        
+        for(int i=0; i<qdt; i++){
+            entrada.nextLine();
+            System.out.println("DADOS ESTUDANTE " + (i+1));
+            System.out.println("Nome: ");
+            String nome_a = entrada.nextLine(); nome.add(nome_a);
+            while(existe == false){
+                System.out.println("CPF: ");
+                String cpf_a = entrada.nextLine(); 
+                if(cpf.contains(cpf_a)){
+                    System.out.println("Esse CPF já existe dentro do sistema... Digite novamente...");
+                }else{
+                    cpf.add(cpf_a);
+                    existe = true;
+                }
+            }
+            System.out.println("Endereco: ");
+            String end = entrada.nextLine(); endereco.add(end);
+            System.out.println("Telefone: ");
+            String tel = entrada.nextLine(); telefone.add(tel);
+            System.out.println("Matricula: ");
+            String mat = entrada.nextLine(); matricula.add(mat);
+            SIAPE.add(0);
+            profissao.add(0);
+            existe = false;
+        }
+        System.out.println("Cadastro realizado com sucesso!");
+        System.out.println("Pressione Qualquer Tecla para continuar...");
+        System.in.read();
     }
-
-    public int getEstudantes() {
-        return Estudantes;
+    //Método CadastrarTurma
+    public void cadastrarTurma() throws IOException{
+        boolean existe = false;
+        Scanner entrada =  new Scanner(System.in);
+        
+        System.out.println("Quantos turmas deseja cadastrar? ");
+        int qdt = entrada.nextInt();
+        
+        for(int i=0; i<qdt; i++){
+            entrada.nextLine();
+            System.out.println("DADOS TURMA " + (i+1));
+            while(existe == false){
+                System.out.println("Numero da turma: ");
+                String id = entrada.nextLine(); id_turma.add(id);
+                if(id_turma.contains(id)){
+                    System.out.println("Esse numero de turma já existe dentro do sistema... Digite novamente...");
+                }else{
+                    id_turma.add(id);
+                    existe = true;
+                }
+            }
+            System.out.println("Semestre da turma: ");
+            int sem = entrada.nextInt(); semestre.add(sem);
+            existe = false;
+        }
+        System.out.println("Cadastro realizado com sucesso!");
+        System.out.println("Pressione Qualquer Tecla para continuar...");
+        System.in.read();
     }
-    public void setEstudantes(int Estudantes) {
-        this.Estudantes = Estudantes;
-    }
-
-    public int getProfessores() {
-        return Professores;
-    }
-    public void setProfessores(int Professores) {
-        this.Professores = Professores;
-    }
-
-    public int getTurmas() {
-        return Turmas;
-    }
-    public void setTurmas(int Turmas) {
-        this.Turmas = Turmas;
-    }
-    
-    public static void Cadastrar(){
+    //Método VincularProfessor
+    public void vincularProfessor(){
         Scanner entrada = new Scanner(System.in);
-        Curso curso = new Curso();
-        Estudante estudante = new Estudante("Nome", "Cpf", "endereço", "telefone");
-        Professores professores = new Professores("Nome", "Cpf", "endereço", "telefone");
-        Turma turma = new Turma();
         
-        //-----------------------------------------------------------------
-        System.out.println("Digite a quantidade de cursos: ");
-        int Cursos = entrada.nextInt();
-        entrada.nextLine();
-        
-        for(int i=0; i<Cursos; i++){
-            System.out.println("Informe o Nome do Curso "+(i+1)+": ");
-            curso.nomeCursos.add(entrada.nextLine());
-            System.out.println("Informe o Semestre do Curso "+(i+1)+": ");
-            curso.numSemestres.add(entrada.nextInt());
-            entrada.nextLine();
+        System.out.println("Informe o numero da turma onde deseja adicionar um professor: ");
+        String numturma = entrada.nextLine();
+        if(id_turma.contains(numturma)){
+            int indiceturma = id_turma.indexOf(numturma);
+            System.out.println("Turma encontrada!");
+            System.out.println("Digite o cpf do professor que deseja adicionar: ");
+            String idcpf = entrada.nextLine();
+            if(cpf.contains(idcpf)){
+                 professor.add(idcpf);
+            }else{
+                System.out.println("Esse professor nao existe...");
+            }
+        }else{
+            System.out.println("Essa turma nao existe...");
         }
-        //-----------------------------------------------------------------
-        System.out.println("Digite a quantidade de turmas: ");
-        int Turmas = entrada.nextInt();
-        entrada.nextLine();
+    }
     
-        for(int i=0; i<Turmas; i++){
-            System.out.println("Informe o Id da turma "+(i+1)+": ");
-            turma.idTurmas.add(entrada.nextLine());
-            System.out.println("Informe o Nome do Curso da turma "+(i+1)+": ");
-            turma.cursos.add(entrada.nextLine());
-            System.out.println("Informe o Semestre da turma "+(i+1)+": ");
-            turma.semestres.add(entrada.nextInt());
-            entrada.nextLine();
-        }
-        //-----------------------------------------------------------------
-        System.out.println("Digite a quantidade de estudantes: ");
-        int Estudantes = entrada.nextInt();
-        entrada.nextLine();
+    // Metodo Principal
+    public static void main(String[] args) throws IOException {
+        int repetidor=1;
+        int escolha;
+        Main obj = new Main();
+        Scanner entrada = new Scanner(System.in);
         
-        for(int i=0; i<Estudantes; i++){
-            System.out.println("Informe o Nome do Estudante "+(i+1)+": ");
-            estudante.nomes.add(entrada.nextLine());
-            System.out.println("Informe o CPF do Estudante "+(i+1)+": ");
-            estudante.cpfs.add(entrada.nextLine());
-            System.out.println("Informe o Endereço do Estudante "+(i+1)+": ");
-            estudante.enderecos.add(entrada.nextLine());
-            System.out.println("Informe o Telefone do Estudante "+(i+1)+": ");
-            estudante.telefones.add(entrada.nextLine());
-            System.out.println("Informe a Matricula do Estudante "+(i+1)+": ");
-            estudante.matriculas.add(entrada.nextLine());
+        while(repetidor==1){
+            System.out.println("Menu:");
+            System.out.println("|1 - Cadastrar professor");
+            System.out.println("|2 - Cadastrar estudante");
+            System.out.println("|3 - Cadastrar turma");
+            System.out.println("|4 - Vincular professor a uma turma");
+            System.out.println("|5 - Vincular estudante a uma turma");
+            System.out.println("|6 - Exibir estudantes e professores de uma turma");
+            System.out.println("|7 - Sair");
+            System.out.println("Escolha:");
+            escolha = entrada.nextInt();
+            
+            switch(escolha){
+                case 1:
+                    obj.cadastrarProfessor();
+                    break;
+                case 2:
+                    obj.cadastrarEstudante();
+                    break;
+                case 3:
+                    obj.cadastrarTurma();
+                    break;
+                case 4:
+                    System.out.println("d");
+                    break;
+                case 5:
+                    System.out.println("e");
+                    break;
+                case 6:
+                    System.out.println("f");
+                    break;
+                case 7:
+                    System.out.println("Pressione Qualquer Tecla para finalizar...");
+                    System.in.read();
+                    repetidor=0;
+                    entrada.close();
+                    break;
+                default:
+            }
         }
-        //-----------------------------------------------------------------
-        System.out.println("Digite a quantidade de professores: ");
-        int Professores = entrada.nextInt();
-        entrada.nextLine();
-        
-        for(int i=0; i<Professores; i++){
-            System.out.println("Informe o Nome do Professor "+(i+1)+": ");
-            professores.nomes.add(entrada.nextLine());
-            System.out.println("Informe o CPF do Professor "+(i+1)+": ");
-            professores.cpfs.add(entrada.nextLine());
-            System.out.println("Informe o Endereço do Professor "+(i+1)+": ");
-            professores.enderecos.add(entrada.nextLine());
-            System.out.println("Informe o Telefone do Professor "+(i+1)+": ");
-            professores.telefones.add(entrada.nextLine());
-            System.out.println("Informe o SIAPE do Professor "+(i+1)+": ");
-            professores.SIAPE.add(entrada.nextInt());
-            entrada.nextLine();
-        }
-        
     }
 }

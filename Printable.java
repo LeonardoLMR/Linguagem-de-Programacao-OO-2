@@ -1,4 +1,4 @@
-package Atividade1;
+package atividadediagnostica;
 
 public interface Printable{
     void MostrarDados();
