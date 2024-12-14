@@ -15,6 +15,7 @@ public class Main {
     public ArrayList<Integer> SIAPE = new ArrayList();
     //Estudante
     public ArrayList<String> matricula = new ArrayList();
+    public ArrayList<Integer> estudante_turma = new ArrayList();
     //Curso
     public ArrayList<String> nome_Curso = new ArrayList();
     public ArrayList<String> qtd_semestres = new ArrayList();
@@ -22,6 +23,7 @@ public class Main {
     public ArrayList<String> id_turma = new ArrayList();
     public ArrayList<Integer> semestre = new ArrayList();
     public ArrayList<String> professor = new ArrayList();
+    
     
     //Método CadastrarProfessor
     public void cadastrarProfessor() throws IOException{
@@ -44,6 +46,8 @@ public class Main {
                     System.out.println("Esse CPF já existe dentro do sistema... Digite novamente...");
                 }else{
                     cpf.add(cpf_a);
+                    professor.add("Sem Professor");
+                    estudante_turma.add(0);
                     existe = true;
                 }
             }
@@ -82,6 +86,7 @@ public class Main {
                     System.out.println("Esse CPF já existe dentro do sistema... Digite novamente...");
                 }else{
                     cpf.add(cpf_a);
+                    estudante_turma.add(0);
                     existe = true;
                 }
             }
@@ -140,10 +145,47 @@ public class Main {
             System.out.println("Digite o cpf do professor que deseja adicionar: ");
             String idcpf = entrada.nextLine();
             if(cpf.contains(idcpf)){
-                 professor.add(idcpf);
+                 professor.set(indiceturma, idcpf);
+                 System.out.println("Professor adicionado com sucesso!");
             }else{
-                System.out.println("Esse professor nao existe...");
+                System.out.println("Esse professor nao existe no sistema...");
             }
+        }else{
+            System.out.println("Essa turma nao existe...");
+        }
+    }
+    //Método VincularEstudante
+    public void vincularEstudante(){
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Informe o numero da turma onde deseja cadastrar o estudante: ");
+        String numturma = entrada.nextLine();
+        if(id_turma.contains(numturma)){
+            int indiceturma = id_turma.indexOf(numturma);
+            System.out.println("Turma encontrada!");
+            System.out.println("Digite o cpf do estudante que deseja adicionar: ");
+            String idcpf = entrada.nextLine();
+            if(cpf.contains(idcpf)){
+                int indice_estudante = cpf.indexOf(idcpf);
+                estudante_turma.set(indice_estudante ,indiceturma);
+            }else{
+                System.out.println("Esse estudante nao existe no sistema...");
+            }
+        }else{
+            System.out.println("Essa turma nao existe...");
+        }
+    }
+    //Método ExibirDados
+    public void exibirDados(){
+        Scanner entrada  = new Scanner(System.in);
+        
+        System.out.println("Digite o numero da turma que deseja exibir os dados:");
+        String numturma = entrada.nextLine();
+        if(id_turma.contains(numturma)){
+            System.out.println("DADOS DA TURMA " + numturma);
+            System.out.println("Professor: ");
+            System.out.println("Estudantes: ");
+            
         }else{
             System.out.println("Essa turma nao existe...");
         }
